@@ -20,7 +20,8 @@ class App extends React.Component {
     }
 
     render() {
-        const { alert } = this.props;
+        const { alert, token } = this.props;
+
         return (
             <div className="jumbotron">
                 <div className="container">
@@ -30,7 +31,7 @@ class App extends React.Component {
                         }
                         <Router history={history}>
                             <div>
-                                <PrivateRoute exact path="/" component={HomePage} />
+                                <PrivateRoute exact path="/" component={HomePage} token={token}/>
                                 <Route path="/login" component={LoginPage} />
                                 <Route path='/auth' component={() => { window.location = authUrl; return null;} }/>
                             </div>
@@ -43,9 +44,10 @@ class App extends React.Component {
 }
 
 function mapStateToProps(state) {
-    const { alert } = state;
+    const { alert, token } = state;
     return {
-        alert
+        alert,
+        token
     };
 }
 
