@@ -3,6 +3,7 @@ import { authHeader } from '../_helpers';
 
 export const userService = {
     login,
+    loginWithState,
     logout,
     getAll
 };
@@ -15,6 +16,22 @@ function login(username, password) {
     };
 
     return fetch(`${config.apiUrl}/users/authenticate`, requestOptions)
+        .then(handleResponse)
+        .then(user => {
+            // store user details and jwt token in local storage to keep user logged in between page refreshes
+            localStorage.setItem('user', JSON.stringify(user));
+
+            return user;
+        });
+}
+
+function loginWithState(state) {
+    const requestOptions = {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ state })
+    };
+    return fetch(`${config.apiUrl}/users/stateauth`, requestOptions)
         .then(handleResponse)
         .then(user => {
             // store user details and jwt token in local storage to keep user logged in between page refreshes
