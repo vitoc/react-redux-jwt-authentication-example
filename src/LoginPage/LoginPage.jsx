@@ -21,6 +21,13 @@ class LoginPage extends React.Component {
         this.handleSubmit = this.handleSubmit.bind(this);
     }
 
+    componentWillMount() {
+        let authState = localStorage.getItem('state');
+        if (authState) {
+            this.props.dispatch(userActions.loginWithState(authState));
+        }        
+    } 
+
     handleChange(e) {
         const { name, value } = e.target;
         this.setState({ [name]: value });
