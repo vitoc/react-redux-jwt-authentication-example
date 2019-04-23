@@ -10,6 +10,11 @@ let uniqid = require('uniqid');
  * page or view they were on.
  */
 
-let state = uniqid();
-localStorage.setItem('state', state);
+let state = localStorage.getItem('state');
+
+if (!state) {
+    state = uniqid();
+    localStorage.setItem('state', state);
+}
+
 export const authUrl = `https://login.microsoftonline.com/${authConstants.TENANT_ID}/oauth2/authorize?client_id=${authConstants.APPLICATION_ID}&response_type=id_token&redirect_uri=${authConstants.REDIRECT_URI}&response_mode=form_post&scope=openid&state=${state}&nonce=${authConstants.NONCE}`;
