@@ -25,7 +25,7 @@ class LoginPage extends React.Component {
         let authState = localStorage.getItem('state');
         if (authState) {
             this.props.dispatch(userActions.loginWithState(authState));
-        }        
+        }
     } 
 
     handleChange(e) {

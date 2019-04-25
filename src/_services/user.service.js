@@ -5,6 +5,7 @@ export const userService = {
     login,
     loginWithState,
     logout,
+    stateLogout,
     getAll
 };
 
@@ -43,7 +44,11 @@ function loginWithState(state) {
 
 function logout() {
     // remove user from local storage to log user out
-    localStorage.removeItem('user');
+    localStorage.removeItem('user');    
+}
+
+function stateLogout() {
+    localStorage.removeItem('state');
 }
 
 function getAll() {

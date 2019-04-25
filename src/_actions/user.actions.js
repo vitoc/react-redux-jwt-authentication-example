@@ -7,6 +7,7 @@ export const userActions = {
     login,
     loginWithState,
     logout,
+    stateLogout,
     getAll
 };
 
@@ -53,6 +54,11 @@ function loginWithState(state) {
 
 function logout() {
     userService.logout();
+    return { type: userConstants.LOGOUT };
+}
+
+function stateLogout() {
+    userService.stateLogout();
     return { type: userConstants.LOGOUT };
 }
 
