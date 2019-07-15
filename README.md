@@ -1,4 +1,4 @@
-# react-redux-jwt-authentication-example
+# stoo-frontend
 
 React + Redux - JWT Authentication Tutorial & Example
 
